@@ -1,0 +1,258 @@
+import turtle
+import math
+
+
+bob = turtle.Turtle()
+bob.speed(0)
+print(bob)
+    
+    
+def arc(t, radius: float, angle: float):
+    """рисует дугу черепашкой t, радиусом radius и углом angle
+       если angle положительный - дуга влево
+       если angle отрицательный - дуга вправо"""
+    if angle >= 0:
+        turn = t.left
+    else:
+        turn = t.right
+        angle = abs(angle)  
+    arc_length = 2 * math.pi * radius * angle / 360
+    n = int(arc_length / 3) + 1
+    step_length = arc_length / n
+    step_angle = angle / n
+    for i in range(n):
+        t.forward(step_length)
+        turn(step_angle)  
+ 
+def line_with_an_angle(t, segment, angle):
+    t.left(angle)
+    t.forward(segment)
+           
+def cos_line_with_an_angle(t, segment, angle):
+    angle_radians = math.radians(angle)
+    segment_length = segment /math.cos(angle_radians) 
+    t.right(angle)
+    t.forward(-segment_length)
+
+#отхожу
+bob.penup()   
+bob.left(180)
+bob.forward(700)
+bob.right(180)
+bob.pendown()
+
+def print_a(t):
+   t.penup()
+   t.forward(60)  
+   t.pendown()
+   t.left(90)
+   angle_radians = math.radians(30)
+   segment_length = 100 * math.cos(angle_radians) 
+   cos_line_with_an_angle(t,  segment_length, -150)
+   t.pendown()
+   line_with_an_angle(t, -50, 0)
+   t.left(120)
+   t.forward(25)
+   t.right(90)
+   t.forward(50)
+   t.left(180)
+   t.forward(100)
+   t.back(100)
+   t.right(90)
+   t.penup()
+   t.forward(50)
+    
+def print_b(t):
+    bob.pendown()
+    t.right(90)
+    t.forward(-100)
+    t.right(-90)
+    arc(t, 25, -180)
+    t.right(180)
+    arc(t, 25, -180)
+    t.left(180)
+    bob.penup()
+    t.forward(100)
+    
+def print_c(t):
+    t.right(-90)
+    t.forward(25)
+    t.pendown()
+    t.forward(50)
+    arc(t, 25, -180)
+    t.right(180)
+    arc(t, 25, 180)
+    t.forward(50)
+    arc(t, 25, 180)
+    t.right(180)
+    arc(t, 25, -180)
+    bob.penup()
+    t.back(25)
+    t.right(90)
+    t.forward(100)
+   
+def print_d(t): 
+    bob.pendown()
+    t.right(-90)
+    t.forward(100)
+    t.right(90)
+    arc(t, 50, -180)
+    t.right(180)
+    bob.penup()
+    t.forward(100)
+ 
+def print_e(t):
+    # просто дополняю print_f(t)
+ t.right(-90)
+ t.pendown()
+ t.forward(100)
+ t.right(90)
+ t.forward(50)
+ t.back(50)
+ t.right(90)
+ t.forward(50)
+ t.left(90)
+ t.forward(25)
+ t.back(25)
+ t.right(90)
+ t.forward(50)
+ t.left(90)
+ t.forward(50)
+ t.penup()
+ t.forward(50)
+    
+          
+def print_f(t):
+ t.right(-90)
+ t.pendown()
+ t.forward(100)
+ t.right(90)
+ t.forward(50)
+ t.back(50)
+ t.right(90)
+ t.forward(50)
+ t.left(90)
+ t.forward(25)
+ t.back(25)
+ t.right(90)
+ t.forward(50)
+ t.left(90)
+ t.penup()
+ t.forward(100)
+
+#дополняю принт c 
+def print_g(t):
+    t.right(-90)
+    t.forward(25)
+    t.pendown()
+    t.forward(50)
+    arc(t, 25, -180)
+    t.right(180)
+    arc(t, 25, 180)
+    t.forward(50)
+    arc(t, 25, 180)
+    t.right(180)
+    t.back(25)
+    t.left(90)
+    t.right(90)
+    t.forward(50)
+    t.left(90)
+    t.penup()
+    t.forward(50)
+
+def print_h(t):
+    t.pendown()
+    t.left(90)
+    t.forward(100)
+    t.back(50)
+    t.right(90)
+    t.forward(50)
+    t.left(90)
+    t.forward(50)
+    t.back(100)
+    t.right(90)
+    t.penup()
+    t.forward(50)
+ 
+def print_i(t):
+ t.pendown()
+ t.forward(50)
+ t.back(25)
+ t.left(90)
+ t.forward(100)
+ t.left(90)
+ t.forward(25)
+ t.left(180)
+ t.forward(50)
+ t.right(180)
+ t.forward(25)
+ t.left(90)
+ t.forward(100)
+ t.left(90)
+ t.penup()
+ t.forward(75)
+
+def print_j(t):
+ t.back(25)
+ t.left(90)
+ t.forward(25)
+ t.left(180)
+ t.pendown()
+ arc(t, 25, 180)
+ t.forward(75)
+ t.left(90)
+ t.forward(50)
+ t.back(50)
+ t.penup()
+ t.left(90)
+ t.forward(100)
+ t.left(90)
+ t.forward(50)
+ 
+def print_k(t):
+ t.pendown()
+ t.left(90)
+ t.forward(100)
+ t.back(50)
+ cos_line_with_an_angle(t, 50, -45)
+ t.penup()
+ t.right(45)
+ t.forward(100)
+ t.left(90)
+ t.pendown()
+ cos_line_with_an_angle(t, -50, -45)
+ t.penup()
+ t.left(45)
+ cos_line_with_an_angle(t, -50, -45)
+ t.left(45)
+ t.forward(50)
+
+print_a(bob)
+print_a(bob)
+print_b(bob)
+print_c(bob)
+print_d(bob)
+print_e(bob)
+print_f(bob)
+print_g(bob)
+print_h(bob)
+print_i(bob)
+print_j(bob)
+print_k(bob)
+#print_l(bob)
+#print_m(bob)
+#print_n(bob)
+#print_o(bob)
+#print_p(bob)
+#print_q(bob)
+#print_r(bob)
+#print_s(bob)
+#print_t(bob)
+#print_u(bob)
+#print_v(bob)
+#print_w(bob)
+#print_x(bob)
+#print_y(bob)
+#print_z(bob)
+     
+turtle.mainloop()
