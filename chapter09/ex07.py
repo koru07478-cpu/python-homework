@@ -6,7 +6,7 @@ def has_three_pairs_identical_letters(word):
             return True
     return False
 
-with open('words.txt') as f:
+with open('../words.txt') as f:
     for line in f:
         word = line.strip()
         if has_three_pairs_identical_letters(word):
