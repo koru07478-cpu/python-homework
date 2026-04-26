@@ -10,7 +10,6 @@ def create_dict():
             di[word] = None
     return di
 
-
 di = create_dict()
 words_list = sorted(di.keys())
 
