@@ -1,6 +1,6 @@
 import time
 import bisect
-
+import random
 
 def create_dict():
     di = {}
@@ -12,35 +12,43 @@ def create_dict():
 
 di = create_dict()
 words_list = sorted(di.keys())
-st = "banana"
 
-# 1. Поиск в словаре (на втором месте)
-start = time.perf_counter()
-found_dict = st in di
-t_dict = time.perf_counter() - start
+# 20 случайных слов из списка
+random_words = random.sample(words_list, 20)
+N = 1000
 
-# 2. Бинарный поиск в списке (самый быстрый)
-start = time.perf_counter()
-i = bisect.bisect_left(words_list, st)
-found_bin = i < len(words_list) and words_list[i] == st
-t_binary_list = time.perf_counter() - start
+total_dict = 0
+total_binary = 0
+total_in_list = 0
 
-# 3. Оператор 'in' в списке (на третьем месте)
-start = time.perf_counter()
-found_list = st in words_list
-t_list = time.perf_counter() - start
+for st in random_words:
+    # 1. Поиск в словаре
+    t_dict = 0
+    for _ in range(N):
+        start = time.perf_counter()
+        found_dict = st in di
+        t_dict += time.perf_counter() - start
+    total_dict += t_dict / N
 
-print(f"Результаты поиска для '{st}':")
-print(f"Словарь:             {t_dict:.10f} сек")
-print(f"СписокБинарный:      {t_binary_list:.10f} сек")
-print(f"СписокIn (banana):   {t_list:.10f} сек")
+    # 2. Бинарный поиск в списке
+    t_binary_list = 0
+    for _ in range(N):
+        start = time.perf_counter()
+        i = bisect.bisect_left(words_list, st)
+        found_bin = i < len(words_list) and words_list[i] == st
+        t_binary_list += time.perf_counter() - start
+    total_binary += t_binary_list / N
 
-st = "zip"  # banana было в начале списка, поэтому in в списке оказался довольно быстрый
-# Чтобы честно померять, можно было взять 10-20 случайных слов.
+    # 3. Оператор 'in' в списке
+    t_list = 0
+    for _ in range(N):
+        start = time.perf_counter()
+        found_list = st in words_list
+        t_list += time.perf_counter() - start
+    total_in_list += t_list / N
 
-# 3. Оператор 'in' в списке (на третьем месте)
-start = time.perf_counter()
-found_list = st in words_list
-t_list = time.perf_counter() - start
-
-print(f"СписокIn (zip):      {t_list:.10f} сек")
+num_words = len(random_words)
+print(f"Средние результаты для {num_words} случайных слов:")
+print(f"Словарь:         {total_dict/num_words:.10f} сек")
+print(f"Список Бинарный: {total_binary/num_words:.10f} сек")
+print(f"Список 'in':     {total_in_list/num_words:.10f} сек")
