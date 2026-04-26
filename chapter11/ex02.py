@@ -1,9 +1,10 @@
 import time
 import bisect
 
+
 def create_dict():
     di = {}
-    with open("words.txt", "r", encoding="utf-8") as file:
+    with open("../words.txt", "r", encoding="utf-8") as file:
         for line in file:
             word = line.strip()
             di[word] = None
@@ -22,15 +23,24 @@ t_dict = time.perf_counter() - start
 start = time.perf_counter()
 i = bisect.bisect_left(words_list, st)
 found_bin = i < len(words_list) and words_list[i] == st
-t_binaryList = time.perf_counter() - start
+t_binary_list = time.perf_counter() - start
 
 # 3. Оператор 'in' в списке (на третьем месте)
 start = time.perf_counter()
 found_list = st in words_list
 t_list = time.perf_counter() - start
 
-
 print(f"Результаты поиска для '{st}':")
 print(f"Словарь:             {t_dict:.10f} сек")
-print(f"СписокБинарный:      {t_binaryList:.10f} сек")
-print(f"СписокIn :           {t_list:.10f} сек")
+print(f"СписокБинарный:      {t_binary_list:.10f} сек")
+print(f"СписокIn (banana):   {t_list:.10f} сек")
+
+st = "zip"  # banana было в начале списка, поэтому in в списке оказался довольно быстрый
+# Чтобы честно померять, можно было взять 10-20 случайных слов.
+
+# 3. Оператор 'in' в списке (на третьем месте)
+start = time.perf_counter()
+found_list = st in words_list
+t_list = time.perf_counter() - start
+
+print(f"СписокIn (zip):      {t_list:.10f} сек")
