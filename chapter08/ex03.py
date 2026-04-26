@@ -1,12 +1,14 @@
 def count(string: str, ministring: str) -> int:
    """Возвращает количество вхождений министроки `ministring` в строку `string`.
 
-   >>> find('babbcb', 'b')
+   >>> count('babbcb', 'b')
    4
-   >>> find('банан', 'а')
+   >>> count('банан', 'а')
    2
-   >>> find('abc', 'd')
-   -1
+   >>> count('банан', 'ан')
+   2
+   >>> count('abc', 'd')
+   0
    """
    index = 0
    count = 0
