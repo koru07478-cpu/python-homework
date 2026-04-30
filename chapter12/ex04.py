@@ -5,27 +5,26 @@ with open('../words.txt', 'r', encoding='utf-8') as f:
 d = {}
 for word in words:
     key = ''.join(sorted(word))
-    if key not in d:  # setdefault
-        d[key] = [word]
-    else:
-        d[key].append(word)
+    d.setdefault(key, []).append(word)   # setdefault (галочка)
 
-for i in d.values():  # i очень долго живёт, стоит переименовать
-    if len(i) < 2:
+for similar_words in d.values():  # i очень долго живёт, стоит переименовать (галочка)
+    if len(similar_words) < 2:
         continue
 
-    for j in range(len(i)):
-        for k in range(j + 1, len(i)):
-            fer = i[j]  # можно было сделать enumerate в цикле выше
-            sec = i[k]  # а тут индекс в принципе дальше не нужен, можно было сразу букву перебирать по срезу
-
+    for i, fer in enumerate(similar_words):
+        for sec in similar_words[i + 1:]:
             if len(fer) != len(sec):
                 continue
+            # можно было сделать enumerate в цикле выше (галочка)
+            # а тут индекс в принципе дальше не нужен, можно было сразу букву перебирать по срезу (галочка)
 
             liist = []
-            for m in range(len(fer)):
-                if fer[m] != sec[m]:  # а тут можно было через zip
-                    liist.append(m)
+
+            for m, (a, b) in enumerate(zip(fer, sec)):
+                if a != b:
+                    liist.append(m) # а тут можно было через zip (галочка)
 
             if len(liist) == 2:
                 print(f"{fer} - {sec}")
+
+#спасибо за комментарии!
