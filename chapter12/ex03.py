@@ -1,4 +1,4 @@
-with open(r'words.txt', 'r', encoding='utf-8') as f:
+with open(r'../words.txt', 'r', encoding='utf-8') as f:
     words = f.read().split()
     # файл прочитали, можно закрыть
     f.close()
@@ -17,10 +17,8 @@ for i in d.values():
     if len(i) > 1:
         seq.append(list(i))
 
-
 # и в конце нужно отсортировать по количеству анаграмм
 seq.sort(key=len, reverse=True)
 
 for g in seq:
     print(g)
-

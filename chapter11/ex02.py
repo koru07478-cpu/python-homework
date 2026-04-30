@@ -4,7 +4,7 @@ import random
 
 def create_dict():
     di = {}
-    with open("../chapter12/words.txt", "r", encoding="utf-8") as file:
+    with open("../words.txt", "r", encoding="utf-8") as file:
         for line in file:
             word = line.strip()
             di[word] = None

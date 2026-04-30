@@ -1,7 +1,7 @@
 # Список слов в файле words.txt не содержит однобуквенных слов.
 # Поэтому  в качестве базового случая мы можем взять слова “i” и “a”.
 words = set()
-with open('words.txt', 'r') as f:
+with open('../words.txt', 'r') as f:
     for line in f:
         words.add(line.strip().lower())
 words.update(['a', 'i', ''])
