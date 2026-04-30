@@ -10,11 +10,13 @@ for word in words:
 
     key = ''.join(sorted(clean_word))
 
-    if key not in d:
-        d[key] = {word}
+    if key not in d:  # setdefault подошёл бы идеально
+        d[key] = {word}  # множества?
     else:
         d[key].add(word)
 
 for i in d.values():
     if len(i) > 1:
         print(list(i))
+
+# и в конце нужно отсортировать по количеству анаграмм
