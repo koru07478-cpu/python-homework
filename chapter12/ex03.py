@@ -1,6 +1,7 @@
-with open(r'../words.txt', 'r', encoding='utf-8') as f:
+with open(r'words.txt', 'r', encoding='utf-8') as f:
     words = f.read().split()
     # файл прочитали, можно закрыть
+    f.close()
 
 d = {}
 for word in words:
@@ -9,14 +10,21 @@ for word in words:
         continue
 
     key = ''.join(sorted(clean_word))
-
-    if key not in d:  # setdefault подошёл бы идеально
-        d[key] = {word}  # множества?
+    if key not in d:
+        d[key] = {word}
     else:
         d[key].add(word)
 
+
+seq = []
 for i in d.values():
     if len(i) > 1:
-        print(list(i))
+        seq.append(list(i))
+
 
 # и в конце нужно отсортировать по количеству анаграмм
+seq.sort(key=len, reverse=True)
+
+for g in seq:
+    print(g)
+
