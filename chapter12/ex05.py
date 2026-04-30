@@ -27,7 +27,7 @@ def a_letter_equals_a_new_word(word):
 all_words = sorted(list(words), key=len, reverse=True)
 
 for w in all_words:
-    path = a_letter_equals_a_new_word(w)
-    if path:
-        print(f"{w} -> {path}")
+    seq = a_letter_equals_a_new_word(w)
+    if seq:
+        print(f"{w} -> {seq}")
         break
