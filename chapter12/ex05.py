@@ -11,6 +11,8 @@ def a_letter_equals_a_new_word(word):
     """
     Рекурсивно ищет цепочку сокращений слова до одной буквы.
     Возвращает список слов или [], если сокращение невозможно.
+    >>> a_letter_equals_a_new_word("split")
+    ['split', 'slit', 'lit', 'it', 'i']
     """
     if word not in words:
         return []
