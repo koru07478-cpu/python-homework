@@ -10,11 +10,7 @@ for word in words:
         continue
 
     key = ''.join(sorted(clean_word))
-    if key not in d:
-        d[key] = {word}
-    else:
-        d[key].add(word)
-
+    d.setdefault(key, set()).add(word)
 
 seq = []
 for i in d.values():

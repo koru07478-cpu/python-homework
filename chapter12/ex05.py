@@ -7,7 +7,7 @@ with open('words.txt', 'r') as f:
 words.update(['a', 'i', ''])
 
 
-def a_letter_equals_a_new_word(word):
+def a_letter_equals_a_new_word(word: str) -> list[str]:
     """
     Рекурсивно ищет цепочку сокращений слова до одной буквы.
     Возвращает список слов или [], если сокращение невозможно.
