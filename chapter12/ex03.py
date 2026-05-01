@@ -1,7 +1,5 @@
 with open(r'../words.txt', 'r', encoding='utf-8') as f:
     words = f.read().split()
-    # файл прочитали, можно закрыть (галочка)
-    f.close()
 
 d = {}
 for word in words:
