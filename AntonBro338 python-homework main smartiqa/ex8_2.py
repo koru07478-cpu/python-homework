@@ -16,11 +16,9 @@ def first_last(letter: str, st: str) -> tuple[int, int] | tuple[None, None]:
     >>> first_last('a', 'spring')
     (None, None)
     """
-
     first = st.find(letter)
-    if first < 0:
-        print("ветка if", file=sys.stderr)  # я просто хотел что бы он мне возращал мне одно и то же
+
+    if first == -1:
         return None, None
-    else:
-        print("ветка else", file=sys.stderr)
-        return first, st.rfind(letter)
+
+    return first, st.rfind(letter)
