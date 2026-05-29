@@ -7,3 +7,4 @@ def change(lst) -> list:
     [-1, 1.1, 'cat', 'Dog', 0]
     """
     return [lst[-1]] + lst[1:-1] + [lst[0]]
+
