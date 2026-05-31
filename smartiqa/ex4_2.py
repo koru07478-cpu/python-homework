@@ -8,5 +8,6 @@ def change(lst: list[Any]) -> list[Any]:
     >>> change([0, 1.1, "cat", "Dog", -1])
     [-1, 1.1, 'cat', 'Dog', 0]
     """
-    return [lst[-1]] + lst[1:-1] + [lst[0]]
+    lst[0], lst[-1] = lst[-1], lst[0]
+    return lst
 
