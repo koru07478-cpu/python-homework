@@ -1,4 +1,6 @@
-def tpl_sort(t) -> float:
+from typing import Any
+
+def tpl_sort(tpl: tuple[Any, ...]) -> tuple[Any, ...]:
     """
     Cортирует кортеж, чтобы он состоял из целых чисел по возрастанию, и возвращает его. Если хотя бы
     один элемент не является целым числом, то функция возвращает исходный кортеж.
@@ -10,11 +12,10 @@ def tpl_sort(t) -> float:
     (6, 1, 4.7, 7)
     >>> tpl_sort((6, 1, 4, 7))
     (1, 4, 6, 7)
+    >>> tpl_sort((5, 5, 2.1, '1', 9))
+    (5, 5, 2.1, '1', 9)
     """
-    liist = []
-    for i in t:
-        if isinstance(i, int):
-            liist.append(i)
-        elif isinstance(i, float):
-            return t
-    return tuple(sorted(liist))
+    for i in tpl:
+        if type(i) is not int:
+            return tpl
+    return tuple(sorted(tpl))

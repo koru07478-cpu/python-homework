@@ -1,4 +1,4 @@
-def useless(lst: list[int | float | str]) -> float:
+def useless(lst: list[int | float | str]) -> float  | None:
     """
     Берет произвольный список чисел, находит самое большое из них, а затем делит его на длину списка.
     >>> useless([0, "cat"])
