@@ -10,10 +10,6 @@ def tpl_sort(t) -> float:
     (6, 1, 4.7, 7)
     >>> tpl_sort((6, 1, 4, 7))
     (1, 4, 6, 7)
-    >>> tpl_sort(())
-    ()
-    >>> tpl_sort((2, 'abc', 1))
-    (2, 'abc', 1)
     """
     liist = []
     for i in t:

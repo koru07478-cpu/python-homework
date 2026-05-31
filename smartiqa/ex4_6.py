@@ -1,4 +1,4 @@
-def all_eq(lst) -> list:
+def all_eq(lst: list[str]) -> list[str]:
     """
     На входе имеем список строк разной длины. Фукция вернет новый список из строк одинаковой длины.
     Длину итоговой строки определяем исходя из самой большой из них. Если конкретная строка короче самой длинной,
@@ -17,8 +17,6 @@ def all_eq(lst) -> list:
     result = []
 
     for s in lst:
-        while len(s) < max_len:
-            s += "_"
-        result.append(s)
-
+        delta = max_len - len(s)
+        result.append(s + "_" * delta)
     return result

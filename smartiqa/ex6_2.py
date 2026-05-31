@@ -1,4 +1,4 @@
-def slicer(t, rand_elem) -> tuple:
+def slicer(t: tuple[int | float, ... ], elem: int) -> tuple[int | None | float, ...]:
     """
     На вход принимает кортеж и случайный элемент. Вернет новый кортеж, начинающийся с первого появления элемента в нем и
     заканчивающийся вторым его появлением включительно.
@@ -15,11 +15,11 @@ def slicer(t, rand_elem) -> tuple:
     >>> slicer((6, 1, 4, 7, 4), 4)
     (4, 7, 4)
     """
-    if t.count(rand_elem) == 0:
+    if t.count(elem) == 0:
         return ()
-    elif t.count(rand_elem) == 1:
-        return t[t.index(rand_elem):]
+    elif t.count(elem) == 1:
+        return t[t.index(elem):]
     else:
-        first = t.index(rand_elem)
-        second = t.index(rand_elem, first + 1)
+        first = t.index(elem)
+        second = t.index(elem, first + 1)
         return t[first:second+1]
