@@ -14,6 +14,8 @@ def tpl_sort(tpl: tuple[Any, ...]) -> tuple[Any, ...]:
     (1, 4, 6, 7)
     >>> tpl_sort((5, 5, 2.1, '1', 9))
     (5, 5, 2.1, '1', 9)
+    >>> tpl_sort(tuple())
+    ()
     """
     for i in tpl:
         if type(i) is not int:
