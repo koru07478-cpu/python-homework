@@ -26,8 +26,6 @@ def replace_lines(pattern: str, replacement: str, input_file: str, output_file: 
     except IOError as e:
         print(f"Ошибка ввода-вывода: {e}")
 
-    except Exception as ex:
-        print(f"Что-то пошло не так: {ex}")
 
 
 def main():

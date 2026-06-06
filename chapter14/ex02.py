@@ -3,17 +3,18 @@
 
 from pathlib import Path
 
-duplicate_file_names = []
-duplicate_file_paths = []
-suf = ".mp3"
 
-
-def find_duplicates_recursive(directory: Path) -> list:
+def find_duplicates_recursive(directory: Path, duplicate_file_names=None, duplicate_file_paths=None) -> list:
+    if duplicate_file_names is None:
+        duplicate_file_names = []
+    if duplicate_file_paths is None:
+        duplicate_file_paths = []
+    suf = ".mp3"
     try:
         for child in directory.iterdir():
             if child.is_dir():
                 # Функция вызывает себя только для подкаталогов - защита от беск рекурсии, когда функция будет самав себя входить
-                find_duplicates_recursive(child)
+                find_duplicates_recursive(child, duplicate_file_names, duplicate_file_paths)
             elif child.is_file() and child.suffix == suf:
                 if child.name not in duplicate_file_names:
                     duplicate_file_names.append(child.name)
@@ -26,5 +27,5 @@ def find_duplicates_recursive(directory: Path) -> list:
     return duplicate_file_paths
 
 
-find_duplicates_recursive(Path.cwd())
-print(duplicate_file_paths)
+print(find_duplicates_recursive(Path.cwd()))
+
