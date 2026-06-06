@@ -8,7 +8,7 @@ duplicate_file_paths = []
 suf = ".mp3"
 
 
-def find_duplicates_recursive(directory: Path):
+def find_duplicates_recursive(directory: Path) -> list:
     try:
         for child in directory.iterdir():
             if child.is_dir():
@@ -22,6 +22,8 @@ def find_duplicates_recursive(directory: Path):
 
     except (PermissionError, FileNotFoundError):
         pass
+
+    return duplicate_file_paths
 
 
 find_duplicates_recursive(Path.cwd())
