@@ -1,8 +1,8 @@
-#Программа для учёта расходов в базе данных shelve
-
 import shelve
 
+
 def shelve_money(filename: str = 'expenses', key: str = 'total') -> None:
+    """Программа для учёта расходов в базе данных shelve."""
     db = None
 
     try:

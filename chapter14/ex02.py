@@ -1,10 +1,9 @@
-# Рекурсивно просматривает каталог и все его подкаталоги и возвращает список полных путей для всех повторяющихся файлов
-# с заданным суффиксом(например,.mp3).
-
 from pathlib import Path
 
 
 def find_duplicates_recursive(directory: Path, duplicate_file_names=None, duplicate_file_paths=None) -> list:
+    """ Рекурсивно просматривает каталог и все его подкаталоги и возвращает список полных путей для всех повторяющихся файлов
+    с заданным суффиксом(например,.mp3)."""
     if duplicate_file_names is None:
         duplicate_file_names = []
     if duplicate_file_paths is None:
