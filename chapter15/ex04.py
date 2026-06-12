@@ -6,7 +6,7 @@ from math import sqrt
 class Circle:
     """Определяет круг."""
     center: Point
-    radius: int
+    radius: float
 
 
 def create_circle(x: float, y: float, radius: float) -> Circle:
