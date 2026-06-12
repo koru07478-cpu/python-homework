@@ -2,7 +2,7 @@ import turtle
 import math
 
 def arc(t: turtle.Turtle, radius: float, angle: float):
-  """рисует дугу черепашкой t,радиусом radius и углом angle"""
+    """рисует дугу черепашкой t,радиусом radius и углом angle"""
     arc_length = 2 * math.pi * radius * angle / 360
     n = int(arc_length / 3) + 1
     step_length = arc_length / n
@@ -13,14 +13,14 @@ def arc(t: turtle.Turtle, radius: float, angle: float):
         t.left(step_angle)
 
 def petal(t, radius, angle):
-  """рисует лепесток черепашкой t, радиусом radius и углом angle"""
+    """рисует лепесток черепашкой t, радиусом radius и углом angle"""
     arc(t, radius, angle)
     t.left(180 - angle)
     arc(t, radius, angle)
     t.left(180 - angle)
 
 def flower(t, radius, angle, n):
-  """рисует цветок черепашкой t, радиусом radius и углом angle лепестков, количество которых равно n"""
+    """рисует цветок черепашкой t, радиусом radius и углом angle лепестков, количество которых равно n"""
     for i in range(n):
         petal(t, radius, angle)
         t.left(360 / n)
