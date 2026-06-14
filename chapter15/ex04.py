@@ -1,10 +1,11 @@
-from chapter15.point import *
-from chapter15.ex02 import *
+from point import *
+from ex02 import *
 from math import sqrt
 
 
 class Circle:
     """Определяет круг."""
+
     center: Point
     radius: float
 
@@ -47,11 +48,7 @@ def point_in_on_circle(circle: Circle, point: Point) -> bool:
     >>> point_in_on_circle(my_circle, create_point(150, 175))
     True
     """
-    dx = circle.center.x - point.x
-    dy = circle.center.y - point.y
-    if sqrt(dx**2 + dy**2) <= circle.radius:
-        return True
-    return False
+    return distance_between_points(circle.center, point) <= circle.radius
 
 
 def point_in_circle(circle: Circle, point: Point) -> bool:
@@ -66,11 +63,7 @@ def point_in_circle(circle: Circle, point: Point) -> bool:
     >>> point_in_circle(my_circle, create_point(150, 175))
     False
     """
-    dx = circle.center.x - point.x
-    dy = circle.center.y - point.y
-    if sqrt(dx**2 + dy**2) < circle.radius:
-        return True
-    return False
+    return distance_between_points(circle.center, point) < circle.radius
 
 
 def rect_in_on_circle(circle: Circle, rectangle: Rectangle) -> bool:
@@ -95,14 +88,14 @@ def rect_in_on_circle(circle: Circle, rectangle: Rectangle) -> bool:
     >>> rect_in_on_circle(my_circle, border_rect)
     True
     """
-    point_right_down = create_point(rectangle.corner.x + rectangle.width, rectangle.corner.y)
-    point_left_up = create_point(rectangle.corner.x, rectangle.corner.y + rectangle.height)
-    point_diagonally = create_point(rectangle.corner.x + rectangle.width, rectangle.corner.y + rectangle.height)
-    if point_in_on_circle(circle, rectangle.corner) and point_in_on_circle(circle, point_right_down) and point_in_on_circle(circle, point_left_up) and point_in_on_circle(circle, point_diagonally):
-        return True
-    return False
+    corners = rectangle_corners(rectangle)
+    for corner in corners:
+        if not point_in_circle(circle, corner):
+            return False
+    return True
 
 
+# название тоже ужасненько, кстати
 def rect_circle_overlap1(circle: Circle, rectangle: Rectangle) -> bool:
     """возвращает True, если любой угол прямоугольника находится внутри круга.
     >>> # Прямоугольник пересекает круг своими углами
@@ -125,12 +118,18 @@ def rect_circle_overlap1(circle: Circle, rectangle: Rectangle) -> bool:
     >>> rect_circle_overlap1(my_circle, side_pierce_rect)
     False
     """
+    corners = rectangle_corners(rectangle)
+    for corner in corners:
+        if point_in_circle(circle, corner):
+            return True
+    return False
+
+
+def rectangle_corners(rectangle: Rectangle) -> tuple[Point, Point, Point, Point]:
     point_right_down = create_point(rectangle.corner.x + rectangle.width, rectangle.corner.y)
     point_left_up = create_point(rectangle.corner.x, rectangle.corner.y + rectangle.height)
     point_diagonally = create_point(rectangle.corner.x + rectangle.width, rectangle.corner.y + rectangle.height)
-    if point_in_circle(circle, rectangle.corner) or point_in_circle(circle, point_right_down) or point_in_circle(circle, point_left_up) or point_in_circle(circle, point_diagonally):
-        return True
-    return False
+    return (rectangle.corner, point_left_up, point_diagonally, point_right_down)
 
 
 def rect_circle_overlap2(circle: Circle, rectangle: Rectangle) -> bool:
@@ -151,15 +150,15 @@ def rect_circle_overlap2(circle: Circle, rectangle: Rectangle) -> bool:
     point_right_down = create_point(rectangle.corner.x + rectangle.width, rectangle.corner.y)
     point_left_up = create_point(rectangle.corner.x, rectangle.corner.y + rectangle.height)
 
-    if circle.center.x - circle.radius <= max(rectangle.corner.x, min(circle.center.x,point_right_down.x)) <= circle.center.x + circle.radius and (rectangle.corner.y <= circle.center.y <= point_left_up.y):
+    if circle.center.x - circle.radius <= max(
+        rectangle.corner.x, min(circle.center.x, point_right_down.x)
+    ) <= circle.center.x + circle.radius and (rectangle.corner.y <= circle.center.y <= point_left_up.y):
         return True
-    elif circle.center.y - circle.radius <= max(rectangle.corner.y, min(circle.center.y,point_left_up.y)) <= circle.center.y + circle.radius and (rectangle.corner.x <= circle.center.x <= point_right_down.x):
+    elif circle.center.y - circle.radius <= max(
+        rectangle.corner.y, min(circle.center.y, point_left_up.y)
+    ) <= circle.center.y + circle.radius and (rectangle.corner.x <= circle.center.x <= point_right_down.x):
         return True
     elif rect_circle_overlap1(circle, rectangle):
         return True
     else:
         return False
-
-
-
-
