@@ -21,6 +21,9 @@ def create_circle(x: float, y: float, radius: float) -> Circle:
     >>> circ.center.y
     100
     """
+    if radius <= 0:
+        raise ValueError("Радиус должен быть больше нуля!")
+
     circ = Circle()
     circ.radius = radius
     circ.center = Point()
