@@ -23,7 +23,4 @@ def is_after(t1: Time, t2: Time) -> bool:
     >>> is_after(time4, time2)
     False
     """
-    seq_time1 = print_time(t1).split(sep=":")
-    seq_time2 = print_time(t2).split(sep=":")
-
-    return seq_time1 > seq_time2
+    return (t1.hour, t1.minute, t1.second) > (t2.hour, t2.minute, t2.second)
