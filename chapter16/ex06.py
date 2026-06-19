@@ -2,14 +2,14 @@ import datetime
 
 
 def get_age(date_of_birth: datetime.datetime, now: datetime.datetime) -> int:
-    """Вычисляет возраст на основе даты рождения и текущего времени."""
+    """Возвращает возраст на основе даты рождения и текущего времени."""
     age = now.year - date_of_birth.year
     if (now.month, now.day) < (date_of_birth.month, date_of_birth.day):
         age -= 1
     return age
 
 
-def print_current_date():
+def print_current_date() -> None:
     # 1
     """Выводит день недели и текущую дату."""
     now = datetime.datetime.now().date()
@@ -17,7 +17,7 @@ def print_current_date():
     print(weekdays[now.weekday()], now)
 
 
-def calculate_user_age_and_time_of_the_next_bd():
+def calculate_user_age_and_time_of_the_next_bd() -> None:
     # 2
     """Принимает в качестве ввода день рождения и выводит возраст
     пользователя и количество дней, часов, минут и секунд до следующего дня рождения."""
@@ -48,9 +48,9 @@ def calculate_user_age_and_time_of_the_next_bd():
     print(f"До следующего дня рождения осталось {days} дн. {hours} ч. {minutes} мин. {seconds} сек.")
 
 
-def calculate_double_day():
+def calculate_double_day() -> None:
     # 3
-    """Принимает в качестве ввода два дня рождения и вычисляет двойной день именинников."""
+    """Принимает в качестве ввода два дня рождения и выводит двойной день именинников."""
     while True:
         input(f"\nПосчитаем двойной день? (тык Enter, если да)")
         date_bd1 = input("Введите дату рождения первого человека в формате ДД.ММ.ГГГГ: ")
@@ -61,10 +61,6 @@ def calculate_double_day():
             break
         except ValueError:
             print("Неверный формат даты! Попробуйте еще раз.")
-
-    now = datetime.datetime.now()
-    age1 = get_age(date_of_birth1, now)
-    age2 = get_age(date_of_birth2, now)
 
     if date_of_birth1 == date_of_birth2:
         print("\nЛюди родились в один день, двойной день невозможен!")
