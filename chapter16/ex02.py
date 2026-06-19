@@ -1,4 +1,4 @@
-from ex01 import Time, print_time
+from ex01 import Time
 
 
 def is_after(t1: Time, t2: Time) -> bool:
