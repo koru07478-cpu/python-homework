@@ -1,22 +1,6 @@
 class Time:
     """Определяет время суток в секундах, прошедших с полуночи."""
 
-    def validate(sec: int, hour: int = 0, minute: int = 0, second: int = 0) -> None:
-        """Проверяет корректность времени в часах.
-
-        >>> Time.validate(90000)
-        Traceback (most recent call last):
-        ValueError: Секунды должны быть от 0 до 86399
-        """
-        if not (0 <= hour < 24):
-            raise ValueError("Часы должны быть от 0 до 23")
-        if not (0 <= minute < 60):
-            raise ValueError("Минуты должны быть от 0 до 59")
-        if not (0 <= second < 60):
-            raise ValueError("Секунды должны быть от 0 до 59")
-        if not (0 <= sec < 86400):
-            raise ValueError("Секунды должны быть от 0 до 86399")
-
     def __init__(self, hour: int = 0, minute: int = 0, second: int = 0):
         """
         >>> print(Time(23, 59, 59).hour)
@@ -39,6 +23,22 @@ class Time:
         sec = min * 60 + second
         Time.validate(sec, hour, minute, second)
         self.sec = sec
+
+    def validate(sec: int, hour: int = 0, minute: int = 0, second: int = 0) -> None:
+        """Проверяет корректность времени в часах.
+
+        >>> Time.validate(90000)
+        Traceback (most recent call last):
+        ValueError: Секунды должны быть от 0 до 86399
+        """
+        if not (0 <= hour < 24):
+            raise ValueError("Часы должны быть от 0 до 23")
+        if not (0 <= minute < 60):
+            raise ValueError("Минуты должны быть от 0 до 59")
+        if not (0 <= second < 60):
+            raise ValueError("Секунды должны быть от 0 до 59")
+        if not (0 <= sec < 86400):
+            raise ValueError("Секунды должны быть от 0 до 86399")
 
     def __str__(self):
         """
