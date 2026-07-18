@@ -18,7 +18,7 @@ def test_classify_words():
         "б": ["банан"],
         "а": ["апельсин"],
     }
-    assert classify_words([]) == {}
+    assert classify_words([""]) == {}
     assert classify_words(["кот", "", "крот"]) == {"к": ["кот", "крот"]}
     print("Все тесты для classify_words успешно пройдены!")
 
